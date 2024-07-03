@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Login</title>
+        <style>
+            #contains-form{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 400px;
+                padding: 40px;
+                transform: translate(-50%, -50%);
+                background: #1b435a;
+                box-sizing: border-box;
+                box-shadow: 0 10px 20px rgb(0,0,0,0.6);
+                border-radius: 10px;
+                color: white;
+            } 
+            html{
+                background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+                font-size: 2ch;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+            }
+            
+            input{
+                margin-bottom:20px;
+                border-radius: 7px;
+                border: 0px;
+                padding-left: 7px;
+                padding-right: 7px;
+                height: 40px;
+                width: 270px;
+            }
+            h1{
+                margin-bottom: 30px;
+                color: white;
+            }
+            #sub-button{
+                background-color: #84caff;
+                width: 70px;
+                height: 30px;
+                font-size: 2ch;
+            }
+            #msg{
+                margin-bottom: 15px;
+                color: rgb(255, 242, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <div id="contains-form">
+                <center>
+                    <h1>Login to Doctor's Portal</h1>
+                    <div id = "msg">{{msg}}</div>
+                    <form action="/login/doctor" method="GET">
+                        <input type="text" name="username" max="40" placeholder="D_ID"/> <br><br>
+                        <input type="password" name="password" max="40" placeholder="Password"/> <br><br>
+                        <input type="submit", id="sub-button"/>
+                    </form>
+                </center>
+            </div>
+        </center>
+    </body>
+</html>

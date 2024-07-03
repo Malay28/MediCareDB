@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <title>Appointment History</title>
+        <style>
+            html{
+                background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+                font-size: 2ch;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+            }
+            body{
+                margin: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #content{
+                background: rgba(21, 14, 60, 0.7);
+                box-shadow: 0 10px 20px rgb(0,0,0,0.6);
+                padding: 20px;
+                text-align: center;
+                width: 85%;
+                color: white;
+                border-radius: 10px;
+            }
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 10px;
+            }
+            .button-view-history {
+                display: inline-block;
+                padding: 5px 10px;
+                background-color: #0077b6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            }
+            table {
+                width: 50%;
+                margin-top: 20px;
+                margin-bottom: 40px;
+                border-collapse: collapse;
+            }
+            tr{
+                border-radius: 10px;
+            }
+            tr:nth-child(even) {
+                background-color: #15ab67;
+            }
+            a{
+                text-decoration: none;
+            }
+            input{
+                background-color: #1c78bf;
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "content">
+            <h1>Upcoming Appointments</h1>
+            <div class="dropdown">
+                <center>
+                    {% if upcoming|length > 0 %}
+                    <table>
+                        <tr>
+                            <td><center><a class="button">DOCTOR NAME</a></center></td>
+                            <td><center><a class="button">DATE</a></center></td>
+                            <td><center><a class="button">START TIME</a></center></td>
+                            <td><center><a class="button">END TIME</a></center></td>
+                        </tr>
+                        {% for appt in upcoming %}
+                            <tr>
+                                <td><center><a class="button">{{appt[0]}}</a></center></td>
+                                <td><center><a class="button">{{appt[1]}}</a></center></td>
+                                <td><center><a class="button">{{appt[2]}}</a></center></td>
+                                <td><center><a class="button">{{appt[3]}}</a></center></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    
+                    {% else %}
+                    <h4>No upcoming appointments found.</h4>
+
+                    {% endif %}
+                </center>
+            </div>
+            <h1>Past Appointments</h1>
+            <div class="dropdown">
+                <center>
+                    {% if past|length > 0 %}
+                    <table>
+                        <tr>
+                            <td><center><a class="button">DOCTOR NAME</a></center></td>
+                            <td><center><a class="button">DATE</a></center></td>
+                            <td><center><a class="button"></a></center></td>
+                        </tr>
+                        
+                        {% for appt in past %}
+                            <tr>
+                                <td><center><a class="button">{{appt[1]}}</a></center></td>
+                                <td><center><a class="button">{{appt[2]}}</a></center></td>
+                                <td><center><a href = "/home/{{type}}/{{name}}/appointmentHistory/{{appt[0]}}" class="button">Summary</a></center></td>
+                            </tr>
+                        {% endfor %}
+                        
+                    </table>
+
+                    {% else %}
+                    <h4>No past appointments found.</h4>
+
+                    {% endif %}
+                    <form action = "/home/patient/{{name}}/valid">
+                        <input type = "submit" value = "HOME"/>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>

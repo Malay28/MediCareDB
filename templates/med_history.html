@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical History</title>
+    <style>
+        html {
+            background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+            font-size: 2ch;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #content {
+            background: rgba(21, 14, 60, 0.7);
+            width: 80%;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+
+        }
+        .button-view-history {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            color: white;
+        }
+        h1 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1> Medical history</h1>
+        <form action="/home/{{user_type}}/{{user_name}}/patientMedicalHistory" method="GET">
+            <input type="text" name="ptid" max="40" placeholder="P_ID"/> <br><br>
+            <input type="submit", id="sub-button" class="button" style="background-color: #33be31;"/>
+        </form>
+        <table>
+            <tr>
+                <th>Patient Name</th>
+                <th>Date</th>
+                <th>Health Condition</th>
+                <th>Treatment</th>
+                <th>Type</th>
+            </tr>
+            {% for h in history %}
+            <tr>
+                <td>{{ h[0] }}</td>
+                <td>{{ h[1] }}</td>
+                <td>{{ h[2] }}</td>
+                <td>{{ h[3] }}</td>
+                <td>{{ h[4] }}</td>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/home/{{ user_type }}/{{ user_name }}/valid" class="button" style="background-color: #a35145;">Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fix Appointment</title>
+    <style>
+        /* Common styles for both content divs */
+        .content {
+            background: rgba(21, 14, 60, 0.7);
+            width: 80%;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        html {
+            background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+            font-size: 2ch;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+
+        }
+        .button-view-history {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .input-container label {
+            color: white; 
+        }
+        tr:nth-child(odd) {
+            color: white;
+        }
+        h1 {
+            color: white;
+        }
+        label{
+            color: white;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            margin: 10px 0; /* Add margin for spacing between input fields */
+        }
+
+        .input-container label {
+            color: white;
+        }
+
+        .input-container input {
+            width: 40%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="content" id="content">
+        <h1>Doctor {{d_id}} Schedule</h1>
+        <table>
+            <tr>
+                <th>Patient_id</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+            </tr>
+            {% for item in doc_schedule %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>{{ item[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/home/{{ user_type }}/{{ user_name }}/requestedAppointments" class="button" style="background-color: #a35145;">Back to Dashboard</a>
+    </div>
+
+    <div class="content" id="content2">
+        <h1>Appointment Details</h1>
+        <form action="/home/{{user_type}}/{{user_name}}/requestedAppointments/fixappt/{{d_id}}/{{p_id}}/add_appointment" method="POST">
+            <div class="input-container">
+                <label for="doctor_id">Doctor ID</label>
+                <input type="text" id="doctor_id" name="doctor_id" value="{{ d_id }}" readonly>
+            </div>
+    
+            <div class="input-container">
+                <label for="patient_id">Patient ID</label>
+                <input type="text" id="patient_id" name="patient_id" value="{{ p_id }}" readonly>
+            </div>
+    
+            <div class="input-container">
+                <label for="date">Date</label>
+                <input type="text" id="date" name="date" pattern="\d{4}/\d{2}/\d{2}" placeholder="yyyy-mm-dd" required>
+            </div>
+    
+            <div class="input-container">
+                <label for="start_time">Start Time</label>
+                <input type="text" id="start_time" name="start_time" pattern="\d{2}:\d{2}:\d{2}" placeholder="hh:mm:ss" required>
+            </div>
+    
+            <div class="input-container">
+                <label for="end_time">End Time</label>
+                <input type="text" id="end_time" name="end_time" pattern="\d{2}:\d{2}:\d{2}" placeholder="hh:mm:ss" required>
+            </div>
+    
+            <input type="submit" value="Add Appointment" class="button">
+        </form>
+    </div>
+    <script>
+        window.onload = function(){
+            let error = '{{error}}'
+            if (error == "error"){
+                setTimeout(function(){
+                    alert("Invalid date or time: Cannot be a date or time that has already passed or clashes with an existing appointment.");
+                    window.location.href = "/home/{{user_type}}/{{user_name}}/requestedAppointments/fixappt/{{d_id}}/{{p_id}}";
+                }, 500);
+            }
+        }
+    </script>    
+    
+</body>
+</html>

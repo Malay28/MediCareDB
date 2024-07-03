@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Summary</title>
+    <style>
+        html {
+            background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+            font-size: 2ch;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #content {
+            background: rgba(21, 14, 60, 0.7);
+            width: 80%;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+
+        }
+        .button-view-history {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 10px
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            color: white;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px
+        }
+        .input-container label {
+            color: white; 
+        }
+        .input-container input,
+        .input-container textarea {
+            width: 70%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>Appointment Summary</h1>
+
+        <form action="/home/{{ user_type }}/{{ user_name }}/activeAppointments/Prescription/{{ a_id }}/submit" method="POST">
+            <div class="input-container">
+                <label for="A_ID">A_ID</label>
+                <input type="text" name="aid" value="{{ a_id }}" readonly>
+            </div>
+
+            <div class="input-container">
+                <label for="symptoms">Symptoms</label>
+                <textarea name="symptoms" placeholder="Symptoms" rows="3" cols="50" required></textarea>
+            </div>
+
+            <div class="input-container">
+                <label for="diagnosis">Diagnosis</label>
+                <textarea name="diagnosis" placeholder="Diagnosis" rows="3" cols="50" required></textarea>
+            </div>
+
+            <div class="input-container">
+                <label for="prescription">Prescription</label>
+                <textarea name="prescription" placeholder="Prescription" rows="3" cols="50" required></textarea>
+            </div>
+
+            <input type="submit" id="sub-prescription" value="Submit" class="button">
+            <a href="/home/{{ user_type }}/{{ user_name }}/activeAppointments" class="button" style="background-color: #a35145;">Back</a>
+        </form>
+    </div>
+</body>
+</html>

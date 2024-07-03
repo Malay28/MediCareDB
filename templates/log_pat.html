@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>Login</title>
+        <style>
+            #contains-form{
+                width: 400px;
+                padding: 25px 35px 25px 35px;
+                background: rgba(39, 31, 82, 0.484);
+                box-sizing: border-box;
+                border-radius: 10px 0px 0px 10px;
+                color: white;
+            } 
+            html{
+                background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+                font-size: 2ch;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+            }
+            
+            input{
+                margin-bottom:20px;
+                border-radius: 7px;
+                border: 0px;
+                padding-left: 7px;
+                padding-right: 7px;
+                height: 40px;
+                width: 270px;
+            }
+            h1{
+                margin-bottom: 15px;
+                margin-top: 15px;
+                color: white;
+            }
+            #sub-button{
+                background-color: #84caff;
+                width: 70px;
+                height: 30px;
+                font-size: 2ch;
+            }
+            #options{
+                background-color:#1b435a;
+                height: 400px;
+                width: 230px;
+                border-radius: 0px 10px 10px 0px;
+                display:flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                padding-top: 19px;
+               
+            }
+            #content{
+                display: flex;
+                flex-direction: row;
+                padding: 150px 435px 150px 435px;
+            }
+            #options > form > input{
+                background-color: #84caff;
+                width: 150px;
+                height: 100px;
+                border-radius: 7px;
+                border: 0px;
+                margin-left: 40px;
+                margin-right: 40px;
+                white-space: normal;
+            }
+            #options > form{
+                margin: 0px;
+                padding: 0px;
+            }
+            #msg{
+                margin-bottom: 15px;
+                color: rgb(255, 242, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "content">
+            <div style="box-shadow: 0 10px 20px rgb(0,0,0,0.6); display: flex; flex-direction: row; border-radius: 10px;">
+                <div id="contains-form">
+                    <h1>Login to Patient Services</h1>
+                    <div id = "msg">{{msg}}</div>
+                    <form action="/login/patient" method = "GET">
+                        <input type="text" name="username" max="40" placeholder="Username"/> <br><br>
+                        <input type="password" name="password" max="40" placeholder="Password"/> <br><br>
+                        <input type="submit", id="sub-button"/>
+                    </form>
+                </div>
+                <div id = "options">
+                    <!--<form action = "/register"><input type = "submit" value = "New here? Register yourself as a patient" /></form>-->
+                    <form action = "/login/receptionist"><input type = "submit" value = "Login as a receptionist" /></form>
+                    <form action = "/login/doctor"><input type = "submit" value = "Login as a doctor" /></form> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+<!-- <html>
+    <form action="/login" method = "GET">
+        <input type="text" name="username" max="40" placeholder="Username"/> <br><br>
+        <input type="password" name="password" max="40" placeholder="Password"/> <br><br>
+        <input type="submit", id="sub-button"/>
+    </form>
+</html> -->

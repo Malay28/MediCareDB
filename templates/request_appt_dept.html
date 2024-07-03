@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>Request Apppointment</title>
+        <style>
+            html{
+                background: linear-gradient(to bottom right, #39a0ed 0%, #36f1cd 100%);
+                font-size: 2ch;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+            }
+            body{
+                margin: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #content{
+                background: rgba(21, 14, 60, 0.7);
+                box-shadow: 0 10px 20px rgb(0,0,0,0.6);
+                padding: 20px;
+                text-align: center;
+                width: 85%;
+                color: white;
+                border-radius: 10px;
+            }
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 10px;
+            }
+            .button-view-history {
+                display: inline-block;
+                padding: 5px 10px;
+                background-color: #0077b6;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            }
+            table {
+                width: 40%;
+                margin-top: 20px;
+                border-collapse: collapse;
+            }
+            td{
+                border-radius: 10px;
+            }
+            tr:nth-child(even) {
+                background-color: #15ab67;
+            }
+            a{
+                text-decoration: none;
+            }
+            input{
+                background-color: #1c78bf;
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "content">
+            <h1>Select Your Doctor</h1>
+            <div class="dropdown">
+                <center>
+                    <table>
+                        {% for doc in doctors %}
+                            <tr><td><center><a href="/home/{{user_type}}/{{user_name}}/requestAppointment/{{dept}}/{{doc[0]}}" class="button">{{doc[1]}}</a></center></td></tr>
+                        {% endfor %}
+                    </table>
+                    <form action = "/home/patient/{{user_name}}/requestAppointment/status/valid">
+                        <input type = "submit" value = "BACK"/>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </body>
+</html>
