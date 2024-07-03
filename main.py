@@ -3,12 +3,12 @@ import mysql.connector
 import re
 
 app = Flask(__name__)
-app.secret_key = 'sjhuefbyuUGgyt3874'
+app.secret_key = ''
 mysql_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'MacbookAirm1',
-    'database': 'dbmsproject'
+    'password': '',
+    'database': ''
 }
 
 @app.route('/login/<user_type>')
